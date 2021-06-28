@@ -1,5 +1,7 @@
 package com.codegym.reddit.controller;
 
+import com.codegym.reddit.dto.AuthenticationResponse;
+import com.codegym.reddit.dto.LoginRequest;
 import com.codegym.reddit.dto.RegisterRequest;
 import com.codegym.reddit.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -22,5 +24,10 @@ public class AuthController {
     public  ResponseEntity<String> verifyAccount(@PathVariable String token){
         authService.verifyAccount(token);
         return new  ResponseEntity<>("Account  Active Success",HttpStatus.OK);
+    }
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest){
+       return authService.login(loginRequest);
+
     }
 }
